@@ -1,19 +1,17 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
 <body>
     <div class="container">
         <h2>Main</h2>
-        
+
         <!-- Form for generating AI -->
         <form action="/" method="post">
-            <p><input type="submit" value="genAI"></p>
+            <input type="hidden" name="action" value="genAI">
+            <p><input type="submit" value="Generate AI"></p>
         </form>
-        
+
         <!-- Form for ending the session -->
         <form action="/" method="post">
-            <p><input type="submit" value="End"></p>
+            <input type="hidden" name="action" value="End">
+            <p><input type="submit" value="End Session"></p>
         </form>
     </div>
 </body>
