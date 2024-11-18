@@ -5,11 +5,15 @@
 <body>
     <div class="container">
         <h2>Main</h2>
-        <form action="/" method="post">
-            <p><input type ="submit" value="genAI"></p>
+        
+        <!-- Form for generating AI -->
+        <form action="/generate" method="post">
+            <p><input type="submit" value="genAI"></p>
         </form>
-        <form action="/" method="post">
-            <p><input type ="submit" value="End"></p>
-            </form>
+        
+        <!-- Form for ending the session -->
+        <form action="/end" method="post">
+            <p><input type="submit" value="End"></p>
+        </form>
     </div>
 </body>
