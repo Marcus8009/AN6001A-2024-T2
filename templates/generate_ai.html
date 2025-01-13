@@ -1,14 +1,23 @@
-<head> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <title>Generative AI Chatbot</title>
 </head>
-
 <body>
-    <div class="container">
-        <h2>Generate AI</h2>
-        <form action="/generate_ai_result" method="post">
-            <p><input type="text" name="question" placeholder="Enter your question" required></p>
-            <p><input type="submit" value="Generate AI"></p>
-        </form>
+    <h1>Generative AI Chatbot</h1>
+    <form action="/generate_ai_result" method="post">
+        <label for="question">Ask a question:</label><br><br>
+        <input type="text" id="question" name="question" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h2>Conversation:</h2>
+    <div>
+        {% for entry in conversation %}
+            <p><strong>You:</strong> {{ entry.question }}</p>
+            <p><strong>Bot:</strong> {{ entry.response }}</p>
+        {% endfor %}
     </div>
 </body>
+</html>

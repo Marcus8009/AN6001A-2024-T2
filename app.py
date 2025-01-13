@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import textblob
 import google.generativeai as genai
 import pandas as pd
-import os 
-
+import os
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Needed for session management
 
 # Configure the generative AI model
 api = os.getenv("MASKERSUITE")
@@ -19,15 +19,24 @@ def index():
         if action == "genAI":
             return render_template("generate_ai.html")
         elif action == "End":
+            session.pop('conversation', None)  # Clear the conversation history
             return "Session Ended!"  # Placeholder
     return render_template("index.html")
 
-@app.route("/generate_ai_result", methods=["POST"])
+@app.route("/generate_ai_result", methods=["GET", "POST"])
 def generate_ai_result():
-    question = request.form.get("question")
-    r = model.generate_content(question)
-    generated_code = r.candidates[0].content.parts[0].text
-    return render_template("ai_result.html", generated_code=generated_code)
+    if 'conversation' not in session:
+        session['conversation'] = []
+
+    if request.method == "POST":
+        question = request.form.get("question")
+        r = model.generate_content(question)
+        generated_code = r.candidates[0].content.parts[0].text
+
+        # Append the question and response to the conversation history
+        session['conversation'].append({'question': question, 'response': generated_code})
+
+    return render_template("ai_result.html", conversation=session['conversation'])
 
 @app.route("/main", methods=["GET", "POST"])
 def main():
