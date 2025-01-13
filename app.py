@@ -36,6 +36,10 @@ def generate_ai_result():
         # Append the question and response to the conversation history
         session['conversation'].append({'question': question, 'response': generated_code})
 
+        # Keep only the last 20 conversations
+        if len(session['conversation']) > 20:
+            session['conversation'] = session['conversation'][-20:]
+
     return render_template("generate_ai.html", conversation=session['conversation'])
 
 @app.route("/main", methods=["GET", "POST"])
