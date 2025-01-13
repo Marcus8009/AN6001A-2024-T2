@@ -36,7 +36,7 @@ def generate_ai_result():
         # Append the question and response to the conversation history
         session['conversation'].append({'question': question, 'response': generated_code})
 
-    return render_template("ai_result.html", conversation=session['conversation'])
+    return render_template("generate_ai.html", conversation=session['conversation'])
 
 @app.route("/main", methods=["GET", "POST"])
 def main():
