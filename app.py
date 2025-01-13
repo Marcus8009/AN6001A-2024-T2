@@ -19,7 +19,7 @@ def index():
         if action == "genAI":
             return render_template("generate_ai.html")
         elif action == "End":
-            session.pop('conversation', None)  # Clear the conversation history.
+            session.pop('conversation', None)  # Clear the conversation history
             return "Session Ended!"  # Placeholder
     return render_template("index.html")
 
