@@ -32,6 +32,7 @@ h2 {
     margin-bottom: 20px;
     color: #333;
 }
+
 form {
     margin: 15px 0;
 }
@@ -89,7 +90,6 @@ p {
     }
 
     p {
-        font-size: 15px;
+        font-size: 16px;
     }
 }
-
